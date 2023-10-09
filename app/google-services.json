@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "599613086716",
+    "project_id": "orizel-school",
+    "storage_bucket": "orizel-school.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:599613086716:android:29195114bc05dcb4083079",
+        "android_client_info": {
+          "package_name": "com.orizel"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1b148uLow6GhtlhgL2Bo5TNN0-n4Owds"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
