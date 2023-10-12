@@ -46,7 +46,12 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+
+    //for implementing firebase authentication
     implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
+
+    //for implementing firebase database (firestore)
+    implementation("com.google.firebase:firebase-firestore-ktx:24.8.1")
 
 
 
