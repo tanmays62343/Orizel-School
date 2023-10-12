@@ -27,7 +27,7 @@
                 android:backgroundTint="@color/Orizel"
                 android:layout_height="?attr/actionBarSize"
                 app:navigationIcon="@drawable/ic_menu"
-                app:title="@string/app_name"
+                app:title="hello"
                 app:titleCentered="true"
                 app:titleTextColor="@color/black"
                 app:titleMarginBottom="25dp"
@@ -45,6 +45,18 @@
         android:layout_height="match_parent"
         app:headerLayout="@layout/drawer_header"
         app:menu="@menu/drawer_menu">
+
+
+
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:layout_gravity="bottom|start"
+            android:backgroundTint="@color/BP"
+            android:layout_margin="16dp"
+            />
 
     </com.google.android.material.navigation.NavigationView>
 

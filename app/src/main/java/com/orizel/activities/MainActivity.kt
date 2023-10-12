@@ -1,9 +1,13 @@
 package com.orizel.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatDelegate
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.orizel.R
 import com.orizel.databinding.ActivityMainBinding
@@ -15,13 +19,23 @@ class MainActivity : AppCompatActivity() {
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     //for firestore initialization
     private lateinit var firestore: FirebaseFirestore
+    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
+        firebaseAuth = FirebaseAuth.getInstance()
 
         setupViews()
+
+        binding?.logout?.setOnClickListener {
+            firebaseAuth.signOut()
+            Toast.makeText(this, "Logged Out",
+                Toast.LENGTH_LONG).show()
+            intent = Intent(this,LoginActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 
