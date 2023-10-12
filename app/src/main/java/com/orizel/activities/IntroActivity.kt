@@ -16,18 +16,21 @@ class IntroActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityIntroBinding.inflate(layoutInflater)
         setContentView(binding?.root)
-        val firebaseAuth = FirebaseAuth.getInstance()
 
+        //for checking if the user is already exists
+        val firebaseAuth = FirebaseAuth.getInstance()
         if(firebaseAuth.currentUser != null){
             redirect("MAIN")
         }
 
+        //Redirecting on button click
         binding?.getStarted?.setOnClickListener {
             redirect("LOGIN")
         }
 
     }
 
+    //Redirecting made easy using when with Intent
     private fun redirect(name:String){
         val intent = when(name){
             "LOGIN" -> Intent(this,LoginActivity::class.java)
