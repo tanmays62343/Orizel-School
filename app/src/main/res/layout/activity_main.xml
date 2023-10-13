@@ -27,7 +27,7 @@
                 android:backgroundTint="@color/Orizel"
                 android:layout_height="?attr/actionBarSize"
                 app:navigationIcon="@drawable/ic_menu"
-                app:title="hello"
+                app:title="@string/app_name"
                 app:titleCentered="true"
                 app:titleTextColor="@color/black"
                 app:titleMarginBottom="25dp"
@@ -35,6 +35,17 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/btNavigationBar"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            app:menu="@menu/bottom_navigation_menu"
+            android:background="@color/Orizel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
