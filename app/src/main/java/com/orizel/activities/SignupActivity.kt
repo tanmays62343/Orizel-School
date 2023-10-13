@@ -1,6 +1,7 @@
 package com.orizel.activities
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -25,6 +26,7 @@ class SignupActivity : AppCompatActivity() {
             signUpUser()
         }
         binding?.tvLogin?.setOnClickListener {
+            binding?.tvLogin?.setTextColor(Color.parseColor("#551A8B"))
             intent = Intent(this,LoginActivity::class.java)
             startActivity(intent)
             finish()
@@ -50,16 +52,27 @@ class SignupActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
         }
-        //Here user is created
+        //firebase function for creating a user
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) {
                 if (it.isSuccessful) {
-                    Toast.makeText(this, "Signup Successful",
-                        Toast.LENGTH_SHORT).show()
-                    intent = Intent(this,MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                } else {
+                    val user = firebaseAuth.currentUser
+                    user?.sendEmailVerification()
+                        ?.addOnCompleteListener { emailTask ->
+                            if (emailTask.isSuccessful) {
+                                Toast.makeText(
+                                    this, "Verification email sent",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                firebaseAuth.signOut()
+                                startActivity(Intent(this,LoginActivity::class.java))
+                            }else {
+                                Toast.makeText(this, "Failed to sent Verification email",
+                                    Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                }
+                else {
                     Toast.makeText(
                         this, "Error Creating User",
                         Toast.LENGTH_SHORT
