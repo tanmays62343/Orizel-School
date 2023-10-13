@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import com.orizel.R
 import com.orizel.databinding.ActivityMainBinding
 
@@ -38,6 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         //TODO : Aman will take care of it
+        binding?.rcvItem?.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
     }
 
     //we are telling here that we have our own action bar
