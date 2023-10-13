@@ -1,4 +1,4 @@
-package com.orizel.activities
+package com.orizel.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,8 +11,8 @@ import com.orizel.R
 import com.orizel.models.FoodProduct
 
 
-class RcvAdapter (val requiredContext : Context,private val foodProduct:ArrayList<FoodProduct>) :
-    RecyclerView.Adapter<RcvAdapter.myViewHolder>() {
+class MainRecyclerAdapter (val requiredContext : Context, private val foodProduct:ArrayList<FoodProduct>) :
+    RecyclerView.Adapter<MainRecyclerAdapter.myViewHolder>() {
     class myViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val itemName : TextView = itemView.findViewById(R.id.topTextView)
         val itemPrice : TextView = itemView.findViewById(R.id.rightTextView)

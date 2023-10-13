@@ -5,15 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
-import android.widget.ImageView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
-import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.orizel.R
+import com.orizel.adapters.MainRecyclerAdapter
 import com.orizel.databinding.ActivityMainBinding
+import com.orizel.models.FoodProduct
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,8 +33,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding?.root)
         firebaseAuth = FirebaseAuth.getInstance()
 
-        setupViews()
+        setupViews()   //Setting up all views Here
 
+        //TODO : Shift the logout buttons place
         binding?.logout?.setOnClickListener {
             firebaseAuth.signOut()
             Toast.makeText(
@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        //Handling the bottom Navigation Bar listener
         binding?.btNavigationBar?.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.btNavigation_home -> {
@@ -73,6 +74,23 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    //Aggregating all the views here
+    private fun setupViews() {
+        setupDrawerLayout()
+        setupRecyclerView()
+        setupFireStore()
+    }
+
+    //Setting up the firebase Database
+    private fun setupFireStore() {
+        firestore = FirebaseFirestore.getInstance()
+        // val collectionReference = firestore.collection("")
+    }
+
+    //Recycler view setup
+    private fun setupRecyclerView() {
         // data items
         var detailsOfItems = ArrayList<FoodProduct>()
         detailsOfItems.add(FoodProduct("Dabeli",50, R.drawable.img))
@@ -81,24 +99,9 @@ class MainActivity : AppCompatActivity() {
         detailsOfItems.add(FoodProduct("Burger",80, R.drawable.img_3))
         detailsOfItems.add(FoodProduct("Thali",180, R.drawable.img_4))
 
-
+        binding!!.rcvItem.adapter = MainRecyclerAdapter(this,detailsOfItems)
         binding?.rcvItem?.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
-        binding!!.rcvItem.adapter = RcvAdapter(this,detailsOfItems)
-    }
 
-    private fun setupViews() {
-        setupDrawerLayout()
-        setupRecyclerView()
-        setupFireStore()
-    }
-
-    private fun setupFireStore() {
-        firestore = FirebaseFirestore.getInstance()
-        // val collectionReference = firestore.collection("")
-    }
-
-    private fun setupRecyclerView() {
-        //TODO : Aman will take care of it
     }
 
     //we are telling here that we have our own action bar
