@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
+import android.widget.ImageView
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -70,6 +73,17 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+        // data items
+        var detailsOfItems = ArrayList<FoodProduct>()
+        detailsOfItems.add(FoodProduct("Dabeli",50, R.drawable.img))
+        detailsOfItems.add(FoodProduct("Noodles",120, R.drawable.img_1))
+        detailsOfItems.add(FoodProduct("Pizza",350, R.drawable.img_2))
+        detailsOfItems.add(FoodProduct("Burger",80, R.drawable.img_3))
+        detailsOfItems.add(FoodProduct("Thali",180, R.drawable.img_4))
+
+
+        binding?.rcvItem?.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
+        binding!!.rcvItem.adapter = RcvAdapter(this,detailsOfItems)
     }
 
     private fun setupViews() {
@@ -90,16 +104,14 @@ class MainActivity : AppCompatActivity() {
     //we are telling here that we have our own action bar
     private fun setupDrawerLayout() {
         setSupportActionBar(binding?.topAppBar)
-        actionBarDrawerToggle = ActionBarDrawerToggle(
-            this, binding?.drawerLayout,
-            R.string.app_name, R.string.app_name
-        )
+        actionBarDrawerToggle = ActionBarDrawerToggle(this,binding?.drawerLayout,
+            R.string.app_name,R.string.app_name)
         actionBarDrawerToggle.syncState()
     }
 
     //Here we are telling that we have handled the top bar actions
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+        if(actionBarDrawerToggle.onOptionsItemSelected(item)){
             return true
         }
         return super.onOptionsItemSelected(item)

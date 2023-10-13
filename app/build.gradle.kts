@@ -52,6 +52,7 @@ dependencies {
 
     //for implementing firebase database (firestore)
     implementation("com.google.firebase:firebase-firestore-ktx:24.8.1")
+    implementation("com.google.firebase:firebase-database-ktx:20.2.2")
 
 
 

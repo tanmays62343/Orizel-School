@@ -5,5 +5,5 @@ import android.media.Image
 data class FoodProduct(
     var name : String,
     var price : Int,
-    var image : Image
+    var image : Int
 )

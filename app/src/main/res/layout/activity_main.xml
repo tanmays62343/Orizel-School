@@ -35,6 +35,15 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvItem"
+            android:layout_width="409dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/btNavigationBar"
             android:layout_width="match_parent"
