@@ -39,6 +39,7 @@ class SignupActivity : AppCompatActivity() {
         val password = binding?.etSpassword?.text.toString()
         val confirmPassword = binding?.etCnfrmPass?.text.toString()
 
+        //General ID and Password Authentication
         if (email.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
             Toast.makeText(
                 this, "Fields cannot be Blank",
@@ -52,6 +53,7 @@ class SignupActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
         }
+
         //firebase function for creating a user
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) {
@@ -62,20 +64,23 @@ class SignupActivity : AppCompatActivity() {
                             if (emailTask.isSuccessful) {
                                 Toast.makeText(
                                     this, "Verification email sent",
-                                    Toast.LENGTH_SHORT
+                                    Toast.LENGTH_LONG
                                 ).show()
+                                binding?.etSemail?.text?.clear()
+                                binding?.etSpassword?.text?.clear()
+                                binding?.etCnfrmPass?.text?.clear()
                                 firebaseAuth.signOut()
                                 startActivity(Intent(this,LoginActivity::class.java))
                             }else {
                                 Toast.makeText(this, "Failed to sent Verification email",
-                                    Toast.LENGTH_SHORT).show()
+                                    Toast.LENGTH_LONG).show()
                             }
                         }
                 }
                 else {
                     Toast.makeText(
                         this, "Error Creating User",
-                        Toast.LENGTH_SHORT
+                        Toast.LENGTH_LONG
                     ).show()
                 }
             }
