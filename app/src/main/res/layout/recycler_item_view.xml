@@ -135,6 +135,14 @@
             </LinearLayout>
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="This space is reserved for providing descriptions about culinary delights and dishes, where flavors and ingredients come to life."
+></TextView>
+
+
+            <TextView
                 android:layout_width="120dp"
                 android:layout_height="40dp"
                 android:id="@+id/addToCart"
