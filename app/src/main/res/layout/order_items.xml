@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -26,6 +27,7 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:id="@+id/food_image"
                 android:src="@drawable/img"/>
 
             <LinearLayout
@@ -40,13 +42,14 @@
                     android:orientation="horizontal"
                     android:padding="4dp">
 
+
                     <TextView
+                        android:id="@+id/food_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cheese Burger"
-                        android:textStyle="bold"
-                        android:textSize="20sp" />
-
+                        android:text="Order Number"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <View
                         android:layout_width="0dp"
@@ -58,6 +61,7 @@
                         android:layout_height="wrap_content"
                         android:text="In progress"
                         android:textStyle="italic"
+                        android:id="@+id/status"
                         android:textSize="16sp" />
 
                 </LinearLayout>
@@ -68,6 +72,7 @@
                     android:layout_height="21dp"
                     android:layout_marginStart="5dp"
                     android:text="16/10/23, 3:15PM"
+                    android:id="@+id/date_time"
                     android:textSize="16sp" />
 
 
@@ -77,6 +82,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="4dp"
                     android:text="₹120"
+                    android:id="@+id/price"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -84,16 +90,20 @@
 
 
             <TextView
+                android:id="@+id/restaurant_name"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:text="Mintu Restaurant"
                 android:textSize="24sp"
                 android:textStyle="bold" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="21dp"
                 android:layout_marginStart="5dp"
+                android:id="@+id/location"
+                android:layout_margin="10dp"
                 android:text="📌 K.K Nagar"
                 android:textSize="16sp" />
 
