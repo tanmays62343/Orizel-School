@@ -48,11 +48,17 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
     //for implementing firebase authentication
-    implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
+    implementation("com.google.firebase:firebase-auth-ktx:22.2.0")
 
     //for implementing firebase database (firestore)
-    implementation("com.google.firebase:firebase-firestore-ktx:24.8.1")
-    implementation("com.google.firebase:firebase-database-ktx:20.2.2")
+    implementation("com.google.firebase:firebase-firestore-ktx:24.9.1")
+    implementation("com.google.firebase:firebase-database-ktx:20.3.0")
+
+    //for implementing firebase Storage
+    implementation("com.google.firebase:firebase-storage:20.3.0")
+
+    //To load images
+    implementation ("com.squareup.picasso:picasso:2.8")
 
 
 

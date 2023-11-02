@@ -3,12 +3,16 @@ package com.orizel.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.toObjects
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.orizel.R
 import com.orizel.adapters.MainRecyclerAdapter
 import com.orizel.databinding.ActivityMainBinding
@@ -24,10 +28,14 @@ class MainActivity : AppCompatActivity() {
     //for firestore initialization
     private lateinit var firestore: FirebaseFirestore
 
+    //for firebase storage
+    private lateinit var storageReference: StorageReference
+
     //for firebase authentication
     private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
@@ -46,14 +54,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+
         //Handling the bottom Navigation Bar listener
         binding?.btNavigationBar?.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.btNavigation_home -> {
-                    Toast.makeText(
-                        this, "Hello",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(this, "Hello",
+                        Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.btNavigation_Cart -> {
@@ -67,7 +75,8 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 else -> {
-                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Error",
+                        Toast.LENGTH_SHORT).show()
                     true
                 }
             }
@@ -86,18 +95,22 @@ class MainActivity : AppCompatActivity() {
     //Setting up the firebase Database
     private fun setupFireStore() {
         firestore = FirebaseFirestore.getInstance()
-        // val collectionReference = firestore.collection("")
+        storageReference = FirebaseStorage.getInstance().reference
+        val collectionReference = firestore.collection("foodProduct")
+        collectionReference.addSnapshotListener { value, error ->
+            if(value == null || error != null){
+                Toast.makeText(this, "Cannot fetch data",
+                    Toast.LENGTH_SHORT).show()
+                return@addSnapshotListener
+            }
+            Log.d("DATA",value.toObjects(FoodProduct::class.java).toString())
+        }
     }
 
     //Recycler view setup
     private fun setupRecyclerView() {
         // data items
-        var detailsOfItems = ArrayList<FoodProduct>()
-        detailsOfItems.add(FoodProduct("Dabeli",50, R.drawable.img))
-        detailsOfItems.add(FoodProduct("Noodles",120, R.drawable.img_1))
-        detailsOfItems.add(FoodProduct("Pizza",350, R.drawable.img_2))
-        detailsOfItems.add(FoodProduct("Burger",80, R.drawable.img_3))
-        detailsOfItems.add(FoodProduct("Thali",180, R.drawable.img_4))
+        val detailsOfItems = ArrayList<FoodProduct>()
 
         binding!!.rcvItem.adapter = MainRecyclerAdapter(this,detailsOfItems)
         binding?.rcvItem?.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
