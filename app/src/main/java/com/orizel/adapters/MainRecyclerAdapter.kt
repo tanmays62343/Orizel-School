@@ -12,7 +12,7 @@ import com.orizel.models.FoodProduct
 import com.squareup.picasso.Picasso
 
 
-class MainRecyclerAdapter (val requiredContext : Context, private val foodProduct:ArrayList<FoodProduct>) :
+class MainRecyclerAdapter (val requiredContext : Context, private val foodProducts: MutableList<FoodProduct>) :
     RecyclerView.Adapter<MainRecyclerAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -21,14 +21,14 @@ class MainRecyclerAdapter (val requiredContext : Context, private val foodProduc
     }
 
     override fun getItemCount(): Int {
-        return foodProduct.size
+        return foodProducts.size
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.itemName.text = foodProduct[position].name
-        holder.itemPrice.text = foodProduct[position].price.toString()
+        holder.itemName.text = foodProducts[position].name
+        holder.itemPrice.text = foodProducts[position].price.toString()
         //Inserting image
-        Picasso.get().load(foodProduct[position].imageUri).into(holder.image)
+        Picasso.get().load(foodProducts[position].imageUri).into(holder.image)
     }
 
     class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {

@@ -54,8 +54,8 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx:24.9.1")
     implementation("com.google.firebase:firebase-database-ktx:20.3.0")
 
-    //for implementing firebase Storage
-    implementation("com.google.firebase:firebase-storage:20.3.0")
+    /*//for implementing firebase Storage
+    implementation("com.google.firebase:firebase-storage:20.3.0")*/
 
     //To load images
     implementation ("com.squareup.picasso:picasso:2.8")

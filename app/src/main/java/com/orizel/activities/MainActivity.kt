@@ -10,9 +10,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.toObjects
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import com.orizel.R
 import com.orizel.adapters.MainRecyclerAdapter
 import com.orizel.databinding.ActivityMainBinding
@@ -28,11 +25,10 @@ class MainActivity : AppCompatActivity() {
     //for firestore initialization
     private lateinit var firestore: FirebaseFirestore
 
-    //for firebase storage
-    private lateinit var storageReference: StorageReference
-
     //for firebase authentication
     private lateinit var firebaseAuth: FirebaseAuth
+
+    private var foodProductsList = mutableListOf<FoodProduct>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -95,7 +91,6 @@ class MainActivity : AppCompatActivity() {
     //Setting up the firebase Database
     private fun setupFireStore() {
         firestore = FirebaseFirestore.getInstance()
-        storageReference = FirebaseStorage.getInstance().reference
         val collectionReference = firestore.collection("foodProduct")
         collectionReference.addSnapshotListener { value, error ->
             if(value == null || error != null){
@@ -103,18 +98,17 @@ class MainActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT).show()
                 return@addSnapshotListener
             }
-            Log.d("DATA",value.toObjects(FoodProduct::class.java).toString())
+            foodProductsList.clear()
+            foodProductsList.addAll(value.toObjects(FoodProduct::class.java))
+            binding?.mainRecyclerView?.adapter?.notifyDataSetChanged()
         }
     }
 
     //Recycler view setup
     private fun setupRecyclerView() {
         // data items
-        val detailsOfItems = ArrayList<FoodProduct>()
-
-        binding!!.rcvItem.adapter = MainRecyclerAdapter(this,detailsOfItems)
-        binding?.rcvItem?.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
-
+        binding!!.mainRecyclerView.adapter = MainRecyclerAdapter(this,foodProductsList)
+        binding?.mainRecyclerView?.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
     }
 
     //we are telling here that we have our own action bar
