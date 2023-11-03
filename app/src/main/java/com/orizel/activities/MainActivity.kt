@@ -92,14 +92,7 @@ class MainActivity : AppCompatActivity() {
     //Recycler view setup
     private fun setupRecyclerView() {
         // data items
-        var detailsOfItems = ArrayList<FoodProduct>()
-        detailsOfItems.add(FoodProduct("Dabeli",50, R.drawable.img))
-        detailsOfItems.add(FoodProduct("Noodles",120, R.drawable.img_1))
-        detailsOfItems.add(FoodProduct("Pizza",350, R.drawable.img_2))
-        detailsOfItems.add(FoodProduct("Burger",80, R.drawable.img_3))
-        detailsOfItems.add(FoodProduct("Thali",180, R.drawable.img_4))
-
-        binding!!.rcvItem.adapter = MainRecyclerAdapter(this,detailsOfItems)
+        //binding!!.rcvItem.adapter = MainRecyclerAdapter(this,detailsOfItems)
         binding?.rcvItem?.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
 
     }
