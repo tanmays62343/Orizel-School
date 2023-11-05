@@ -27,6 +27,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout"
                         android:layout_width="match_parent"
                         android:layout_height="360dp"
                         android:background="@drawable/profile_background"
@@ -58,7 +59,7 @@
                         android:layout_marginStart="176dp"
                         android:layout_marginTop="17dp"
                         android:layout_marginEnd="177dp"
-                        android:text="Its Orizel"
+                        android:text="Name"
                         android:textSize="25sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -79,6 +80,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
                     <LinearLayout
+                        android:id="@+id/linearLayout"
                         android:layout_width="match_parent"
                         android:layout_height="400dp"
                         android:layout_marginStart="24dp"
@@ -89,19 +91,109 @@
                         android:orientation="vertical"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView5" >
+                        app:layout_constraintTop_toBottomOf="@+id/textView5">
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:layout_margin="20dp"
                             android:orientation="horizontal">
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical"></LinearLayout>
+                            <TextView
+                                android:id="@+id/Roll_no_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="18sp"
+                                android:layout_weight="1"
+                                android:textStyle="bold"
+                                android:text="Roll Number"/>
+
+                            <TextView
+                                android:id="@+id/Roll_no_2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="18sp"
+                                android:layout_weight="1"
+                                android:text="22MCA10009"/>
+
                         </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:orientation="horizontal"
+                            android:layout_margin="20dp">
+
+
+                            <TextView
+                                android:id="@+id/Mobile_no_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="18sp"
+                                android:layout_weight="1"
+                                android:textStyle="bold"
+                                android:text="Mobile          "/>
+
+                            <TextView
+                                android:id="@+id/Mobile_no_2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="18sp"
+                                android:layout_weight="1"
+                                android:text="9999999999"/>
+
+
+
+                        </LinearLayout>                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:orientation="horizontal"
+                            android:layout_margin="20dp">
+
+
+                            <TextView
+                                android:id="@+id/DOB"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="18sp"
+                                android:layout_weight="1"
+                                android:textStyle="bold"
+                                android:text="DOB          "/>
+
+                            <TextView
+                                android:id="@+id/DOB_2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="18sp"
+                                android:layout_weight="1"
+                                android:text="22MCA10009"/>
+
+
+
+                        </LinearLayout>
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/update_profile"
+                            android:layout_margin="20dp"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:backgroundTint="@color/BP"
+                            android:textColor="@color/white"
+                            android:text="UPDATE PROFILE">
+                        </androidx.appcompat.widget.AppCompatButton>
+
+
+
+
+
                     </LinearLayout>
+                    
+
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
