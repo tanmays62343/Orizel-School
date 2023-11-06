@@ -4,7 +4,6 @@
     <item
         android:id="@+id/btNavigation_home"
         android:icon="@drawable/ic_home"
-        android:iconTint="@drawable/col_bt_navigation"
         android:checked="true"
         android:title="Home"
         />
