@@ -16,7 +16,7 @@ class MainRecyclerAdapter (val requiredContext : Context, private val foodProduc
     RecyclerView.Adapter<MainRecyclerAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.rcv_items,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_view_item,parent,false)
         return MyViewHolder(view)
     }
 
@@ -32,9 +32,9 @@ class MainRecyclerAdapter (val requiredContext : Context, private val foodProduc
     }
 
     class MyViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
-        val itemName : TextView = itemView.findViewById(R.id.topTextView)
-        val itemPrice : TextView = itemView.findViewById(R.id.rightTextView)
-        val image :ImageView = itemView.findViewById(R.id.food_product_img)
+        val itemName : TextView = itemView.findViewById(R.id.food_Product_Name)
+        val itemPrice : TextView = itemView.findViewById(R.id.food_Product_price)
+        val image :ImageView = itemView.findViewById(R.id.food_product_image)
 
     }
 
