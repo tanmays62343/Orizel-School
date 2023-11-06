@@ -15,6 +15,9 @@
         android:theme="@style/Theme.OrizelSchool"
         tools:targetApi="31">
         <activity
+            android:name=".activities.About_us"
+            android:exported="false" />
+        <activity
             android:name=".activities.Profile"
             android:exported="false" />
         <activity
