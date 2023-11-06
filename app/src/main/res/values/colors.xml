@@ -6,5 +6,6 @@
     <color name="BP">#FF5964</color>
     <color name="Gr">#6BF178</color>
     <color name="Bl">#35A7FF</color>
-    <color name="etbg">#FFFCEB</color>
+    <color name="et_bg">#FFFCEB</color>
+    <color name="btn_bg">#C39200</color>
 </resources>

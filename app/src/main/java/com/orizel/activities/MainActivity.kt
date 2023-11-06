@@ -1,5 +1,6 @@
 package com.orizel.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -89,6 +90,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     //Setting up the firebase Database
+    @SuppressLint("NotifyDataSetChanged")
     private fun setupFireStore() {
         firestore = FirebaseFirestore.getInstance()
         val collectionReference = firestore.collection("foodProduct")
