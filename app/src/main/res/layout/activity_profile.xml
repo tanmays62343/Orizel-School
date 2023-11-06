@@ -106,6 +106,7 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="18sp"
                                 android:layout_weight="1"
+                                android:gravity="center"
                                 android:textStyle="bold"
                                 android:text="Roll Number"/>
 
@@ -114,6 +115,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="18sp"
+                                android:gravity="center"
                                 android:layout_weight="1"
                                 android:text="22MCA10009"/>
 
@@ -134,7 +136,8 @@
                                 android:textSize="18sp"
                                 android:layout_weight="1"
                                 android:textStyle="bold"
-                                android:text="Mobile          "/>
+                                android:gravity="center"
+                                android:text="Mobile"/>
 
                             <TextView
                                 android:id="@+id/Mobile_no_2"
@@ -142,6 +145,7 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="18sp"
                                 android:layout_weight="1"
+                                android:gravity="center"
                                 android:text="9999999999"/>
 
 
@@ -158,19 +162,20 @@
                                 android:id="@+id/DOB"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:gravity="center"
                                 android:textSize="18sp"
                                 android:layout_weight="1"
                                 android:textStyle="bold"
-                                android:text="DOB          "/>
+                                android:text="DOB"/>
 
                             <TextView
                                 android:id="@+id/DOB_2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="18sp"
+                                android:gravity="center"
                                 android:layout_weight="1"
-                                android:text="22MCA10009"/>
-
+                                android:text="23-01-2001"/>
 
 
                         </LinearLayout>
