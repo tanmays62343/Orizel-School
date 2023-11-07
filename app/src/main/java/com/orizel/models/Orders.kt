@@ -1,6 +1,6 @@
 package com.orizel.models
 
-data class OrderItems(
+data class Orders(
     var nameOfFood : String,
     var nameOfRestaurant : String,
     var price : Int,

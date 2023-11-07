@@ -11,7 +11,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.orizel.R
-import com.orizel.activities.CartActivity
 import com.orizel.models.FoodProduct
 import com.squareup.picasso.Picasso
 
