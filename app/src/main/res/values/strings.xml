@@ -1,5 +1,11 @@
 <resources>
 
     <string name="app_name">Orizel</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="cart">Cart</string>
+    <string name="orders">Orders</string>
+    <string name="picture_of_food_product">Picture of food product</string>
 
 </resources>

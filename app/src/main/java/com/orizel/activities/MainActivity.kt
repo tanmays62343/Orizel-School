@@ -20,8 +20,11 @@ class MainActivity : AppCompatActivity() {
     //for firebase authentication
     private lateinit var firebaseAuth: FirebaseAuth
 
-    //initializing the foodProducts fragments
+    //initializing the fragments
     private val foodProductsFragment = FoodProductsFragment()
+    private val cartFragment = CartFragment()
+    private val ordersFragment = OrdersFragment()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -50,16 +53,20 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.btNavigation_home -> {
                     setupFragment()
-                    true
+                   true
                 }
                 R.id.btNavigation_Cart -> {
-                    Toast.makeText(this, "Cart",
-                        Toast.LENGTH_SHORT).show()
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(binding.fragmentContainer.id,cartFragment)
+                        commit()
+                    }
                     true
                 }
                 R.id.btNavigation_orders -> {
-                    Toast.makeText(this, "Orders",
-                        Toast.LENGTH_SHORT).show()
+                    supportFragmentManager.beginTransaction().apply {
+                        replace(binding.fragmentContainer.id,ordersFragment)
+                        commit()
+                    }
                     true
                 }
                 else -> {
@@ -70,6 +77,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        binding.btNavigationBar.getOrCreateBadge(R.id.btNavigation_Cart).apply{
+            number = 10
+        }
 
     }
 
