@@ -81,7 +81,7 @@
                     android:layout_height="21dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="4dp"
-                    android:text="₹120"
+                    android:text="120"
                     android:id="@+id/price"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -89,23 +89,7 @@
         </LinearLayout>
 
 
-            <TextView
-                android:id="@+id/restaurant_name"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:text="Mintu Restaurant"
-                android:textSize="24sp"
-                android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="21dp"
-                android:layout_marginStart="5dp"
-                android:id="@+id/location"
-                android:layout_margin="10dp"
-                android:text="📌 K.K Nagar"
-                android:textSize="16sp" />
 
 
         </LinearLayout>
