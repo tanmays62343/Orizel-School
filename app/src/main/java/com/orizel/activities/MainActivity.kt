@@ -9,6 +9,9 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.firebase.auth.FirebaseAuth
 import com.orizel.R
 import com.orizel.databinding.ActivityMainBinding
+import com.orizel.fragments.CartFragment
+import com.orizel.fragments.FoodProductsFragment
+import com.orizel.fragments.OrdersFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -77,15 +80,24 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.drawerNavigation.setNavigationItemSelectedListener {
-            when(it.itemId){
+        //Handling the drawer menu items
+        binding.drawerNavigation.setNavigationItemSelectedListener { menuItem ->
+            when(menuItem.itemId){
                 R.id.profile -> {
-                    Intent(this,ProfileActivity::class.java)
+                    Intent(this,ProfileActivity::class.java).also {
+                        startActivity(it)
+                    }
                     true
                 }
-
+                R.id.aboutUs -> {
+                    Intent(this,AboutUsActivity::class.java).also {
+                        startActivity(it)
+                    }
+                    true
+                }
                 else -> {
-                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,
+                        "Error", Toast.LENGTH_SHORT).show()
                     false
                 }
             }

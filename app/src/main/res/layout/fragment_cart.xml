@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="18dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".activities.CartFragment">
+    tools:context=".fragments.CartFragment">
 
     <ScrollView
         android:layout_width="match_parent"

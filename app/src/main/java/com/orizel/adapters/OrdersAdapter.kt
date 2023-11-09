@@ -25,10 +25,10 @@ class OrdersAdapter(val requiredContext: Context, private val orderItems : Array
     override fun onBindViewHolder(holder: OrderViewAdapter, position: Int) {
         holder.datetime.text = orderItems[position].dateAndTime
         holder.foodName.text = orderItems[position].nameOfFood
-        holder.location.text = orderItems[position].location
+
         holder.status.text = orderItems[position].status
         holder.price.text = orderItems[position].price.toString()
-        holder.restaurantName.text = orderItems[position].nameOfRestaurant
+
         holder.foodImage.setImageResource(orderItems[position].image)
     }
 
@@ -38,8 +38,7 @@ class OrdersAdapter(val requiredContext: Context, private val orderItems : Array
         val status : TextView = itemView.findViewById(R.id.status)
         val datetime : TextView = itemView.findViewById(R.id.date_time)
         val price : TextView = itemView.findViewById(R.id.price)
-        val restaurantName : TextView = itemView.findViewById(R.id.restaurant_name)
-        val location : TextView = itemView.findViewById(R.id.location)
+
     }
 
 }
