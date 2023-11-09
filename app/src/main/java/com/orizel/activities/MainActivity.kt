@@ -77,6 +77,20 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        binding.drawerNavigation.setNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.profile -> {
+                    Intent(this,ProfileActivity::class.java)
+                    true
+                }
+
+                else -> {
+                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+                    false
+                }
+            }
+        }
+
         binding.btNavigationBar.getOrCreateBadge(R.id.btNavigation_Cart).apply{
             number = 10
         }

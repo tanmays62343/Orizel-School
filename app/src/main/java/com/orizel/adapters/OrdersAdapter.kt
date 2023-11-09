@@ -11,34 +11,34 @@ import com.orizel.R
 import com.orizel.models.Orders
 
 class OrdersAdapter(val requiredContext: Context, private val orderItems : ArrayList<Orders>) :
-    RecyclerView.Adapter<OrdersAdapter.orderViewAdapter>() {
+    RecyclerView.Adapter<OrdersAdapter.OrderViewAdapter>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): orderViewAdapter {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderViewAdapter {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.order_items, parent, false)
-        return orderViewAdapter(view)
+        return OrderViewAdapter(view)
     }
 
     override fun getItemCount(): Int {
         return orderItems.size
     }
 
-    override fun onBindViewHolder(holder: orderViewAdapter, position: Int) {
-        holder.date_time.text = orderItems[position].dateAndTime
-        holder.food_name.text = orderItems[position].nameOfFood
+    override fun onBindViewHolder(holder: OrderViewAdapter, position: Int) {
+        holder.datetime.text = orderItems[position].dateAndTime
+        holder.foodName.text = orderItems[position].nameOfFood
         holder.location.text = orderItems[position].location
         holder.status.text = orderItems[position].status
         holder.price.text = orderItems[position].price.toString()
-        holder.restaurant_name.text = orderItems[position].nameOfRestaurant
-        holder.food_image.setImageResource(orderItems[position].image)
+        holder.restaurantName.text = orderItems[position].nameOfRestaurant
+        holder.foodImage.setImageResource(orderItems[position].image)
     }
 
-    class orderViewAdapter(itemView : View) : RecyclerView.ViewHolder(itemView) {
-        val food_image : ImageView = itemView.findViewById(R.id.food_image)
-        val food_name : TextView = itemView.findViewById(R.id.food_name)
+    class OrderViewAdapter(itemView : View) : RecyclerView.ViewHolder(itemView) {
+        val foodImage : ImageView = itemView.findViewById(R.id.food_image)
+        val foodName : TextView = itemView.findViewById(R.id.food_name)
         val status : TextView = itemView.findViewById(R.id.status)
-        val date_time : TextView = itemView.findViewById(R.id.date_time)
+        val datetime : TextView = itemView.findViewById(R.id.date_time)
         val price : TextView = itemView.findViewById(R.id.price)
-        val restaurant_name : TextView = itemView.findViewById(R.id.restaurant_name)
+        val restaurantName : TextView = itemView.findViewById(R.id.restaurant_name)
         val location : TextView = itemView.findViewById(R.id.location)
     }
 

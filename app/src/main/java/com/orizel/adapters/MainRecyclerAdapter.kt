@@ -1,5 +1,6 @@
 package com.orizel.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +22,6 @@ class MainRecyclerAdapter(
     RecyclerView.Adapter<MainRecyclerAdapter.MyViewHolder>() {
 
     private var quantities: Int = 0
-    private lateinit var foodProductName: String
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view =
@@ -33,11 +33,14 @@ class MainRecyclerAdapter(
         return foodProducts.size
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.itemName.text = foodProducts[position].name
         holder.itemPrice.text = "₹ " + foodProducts[position].price.toString()
         //Inserting image
-        Picasso.get().load(foodProducts[position].imageUri).into(holder.image)
+        Picasso.get()
+            .load(foodProducts[position].imageUri)
+            .into(holder.image)
 
         holder.addItem.setOnClickListener {
             if(quantities<60) {
