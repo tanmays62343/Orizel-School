@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
 import com.orizel.R
+import com.orizel.utils.Constants.FOOD_PRODUCTS
 import com.orizel.adapters.MainRecyclerAdapter
 import com.orizel.databinding.FragmentFoodProductsBinding
 import com.orizel.models.FoodProduct
@@ -57,7 +58,7 @@ class FoodProductsFragment : Fragment(R.layout.fragment_food_products) {
     //Setting up the firebase Database
     private fun setupFireStore() {
         firestore = FirebaseFirestore.getInstance()
-        val collectionReference = firestore.collection("foodProduct")
+        val collectionReference = firestore.collection(FOOD_PRODUCTS)
         collectionReference.addSnapshotListener { value, error ->
             if(value == null || error != null){
                 Toast.makeText(requireContext(), "Cannot fetch data",
@@ -69,7 +70,6 @@ class FoodProductsFragment : Fragment(R.layout.fragment_food_products) {
             binding?.mainRecyclerView?.adapter = MainRecyclerAdapter(
                 requireContext(),
                 foodProductsList)
-
             /*binding?.mainRecyclerView?.adapter?.notifyDataSetChanged()
             we do not require this here*/
         }

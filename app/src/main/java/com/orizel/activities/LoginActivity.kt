@@ -7,12 +7,13 @@ import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.orizel.R
 import com.orizel.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
 
     private var binding : ActivityLoginBinding? = null
+
+    //for firebase authentication
     private lateinit var firebaseAuth: FirebaseAuth
     private var user : FirebaseUser? = null
 
@@ -69,7 +70,6 @@ class LoginActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT).show()
                 }
             }
-
     }
 
 }

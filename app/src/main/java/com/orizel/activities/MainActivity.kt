@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() {
             ).show()
             intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
 
@@ -93,6 +94,10 @@ class MainActivity : AppCompatActivity() {
                     Intent(this,AboutUsActivity::class.java).also {
                         startActivity(it)
                     }
+                    true
+                }
+                R.id.rateUs ->{
+                    //TODO (When uploaded to playStore)
                     true
                 }
                 else -> {

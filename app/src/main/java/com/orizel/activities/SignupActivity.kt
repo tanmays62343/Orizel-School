@@ -6,13 +6,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.orizel.R
+import com.google.firebase.firestore.FirebaseFirestore
+import com.orizel.utils.Constants.USERS_COLLECTION
 import com.orizel.databinding.ActivitySignupBinding
+import com.orizel.models.User
 
 class SignupActivity : AppCompatActivity() {
 
     private var binding: ActivitySignupBinding? = null
+
+    //for firebase authentication
     private lateinit var firebaseAuth: FirebaseAuth
+
+    //for firebase firestore database
+    private lateinit var firestore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,13 +28,14 @@ class SignupActivity : AppCompatActivity() {
 
         //initializing firebase
         firebaseAuth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
 
         binding?.SignupBtn?.setOnClickListener {
             signUpUser()
         }
         binding?.tvLogin?.setOnClickListener {
             binding?.tvLogin?.setTextColor(Color.parseColor("#551A8B"))
-            intent = Intent(this,LoginActivity::class.java)
+            intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -35,12 +43,17 @@ class SignupActivity : AppCompatActivity() {
 
     //creating a user using firebase
     private fun signUpUser() {
+        val name = binding?.etSname?.text.toString()
         val email = binding?.etSemail?.text.toString()
         val password = binding?.etSpassword?.text.toString()
         val confirmPassword = binding?.etCnfrmPass?.text.toString()
 
+        val mUser = User(name, email)
+
         //General ID and Password Authentication
-        if (email.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
+        if (email.isBlank() || password.isBlank()
+            || confirmPassword.isBlank() || name.isBlank()
+        ) {
             Toast.makeText(
                 this, "Fields cannot be Blank",
                 Toast.LENGTH_SHORT
@@ -66,18 +79,20 @@ class SignupActivity : AppCompatActivity() {
                                     this, "Verification email sent",
                                     Toast.LENGTH_LONG
                                 ).show()
+                                saveUserInfo(user.uid,mUser)
                                 binding?.etSemail?.text?.clear()
                                 binding?.etSpassword?.text?.clear()
                                 binding?.etCnfrmPass?.text?.clear()
                                 firebaseAuth.signOut()
-                                startActivity(Intent(this,LoginActivity::class.java))
-                            }else {
-                                Toast.makeText(this, "Failed to sent Verification email",
-                                    Toast.LENGTH_LONG).show()
+                                startActivity(Intent(this, LoginActivity::class.java))
+                            } else {
+                                Toast.makeText(
+                                    this, "Failed to sent Verification email",
+                                    Toast.LENGTH_LONG
+                                ).show()
                             }
                         }
-                }
-                else {
+                } else {
                     Toast.makeText(
                         this, "Error Creating User",
                         Toast.LENGTH_LONG
@@ -85,5 +100,12 @@ class SignupActivity : AppCompatActivity() {
                 }
             }
     }
+
+    private fun saveUserInfo(userUid: String, user: User) {
+        firestore.collection(USERS_COLLECTION)
+            .document(userUid)
+            .set(user)
+    }
+
 
 }

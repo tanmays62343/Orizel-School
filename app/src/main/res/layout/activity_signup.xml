@@ -33,13 +33,23 @@
             android:text="Enter your email address and password \n to get access to your account" />
 
         <EditText
+            android:id="@+id/et_Sname"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:hint="Name"
+            android:textSize="16sp"
+            android:layout_marginTop="24dp"
+            android:inputType="textEmailAddress" />
+
+        <EditText
             android:id="@+id/et_Semail"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:ems="10"
             android:hint="Email"
             android:textSize="16sp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:inputType="textEmailAddress" />
 
         <EditText
