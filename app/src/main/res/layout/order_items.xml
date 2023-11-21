@@ -27,7 +27,7 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:id="@+id/food_image"
+                android:id="@+id/foood_image"
                 tools:src="@drawable/logo_bg"/>
 
             <LinearLayout
@@ -44,7 +44,7 @@
 
 
                     <TextView
-                        android:id="@+id/food_name"
+                        android:id="@+id/foood_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Order Number"

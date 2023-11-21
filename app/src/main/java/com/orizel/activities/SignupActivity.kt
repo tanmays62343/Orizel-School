@@ -10,6 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.orizel.utils.Constants.USERS_COLLECTION
 import com.orizel.databinding.ActivitySignupBinding
 import com.orizel.models.User
+import com.orizel.utils.Constants.CART_COLLECTION
 
 class SignupActivity : AppCompatActivity() {
 
@@ -33,6 +34,7 @@ class SignupActivity : AppCompatActivity() {
         binding?.SignupBtn?.setOnClickListener {
             signUpUser()
         }
+
         binding?.tvLogin?.setOnClickListener {
             binding?.tvLogin?.setTextColor(Color.parseColor("#551A8B"))
             intent = Intent(this, LoginActivity::class.java)
@@ -65,6 +67,7 @@ class SignupActivity : AppCompatActivity() {
                 this, "Passwords do not Match",
                 Toast.LENGTH_SHORT
             ).show()
+            return
         }
 
         //firebase function for creating a user
@@ -79,10 +82,13 @@ class SignupActivity : AppCompatActivity() {
                                     this, "Verification email sent",
                                     Toast.LENGTH_LONG
                                 ).show()
+
                                 saveUserInfo(user.uid,mUser)
+
                                 binding?.etSemail?.text?.clear()
                                 binding?.etSpassword?.text?.clear()
                                 binding?.etCnfrmPass?.text?.clear()
+                                binding?.etSname?.text?.clear()
                                 firebaseAuth.signOut()
                                 startActivity(Intent(this, LoginActivity::class.java))
                             } else {
@@ -101,11 +107,10 @@ class SignupActivity : AppCompatActivity() {
             }
     }
 
+    //function for saving the users info
     private fun saveUserInfo(userUid: String, user: User) {
         firestore.collection(USERS_COLLECTION)
             .document(userUid)
             .set(user)
     }
-
-
 }

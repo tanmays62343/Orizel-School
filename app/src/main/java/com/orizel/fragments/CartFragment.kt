@@ -1,22 +1,34 @@
 package com.orizel.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.orizel.R
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.orizel.adapters.CartAdapter
 import com.orizel.databinding.FragmentCartBinding
-import com.orizel.models.FoodProduct
+import com.orizel.models.CartProduct
+import com.orizel.utils.Constants.CART_COLLECTION
+import com.orizel.utils.Constants.USERS_COLLECTION
 
-class CartFragment : Fragment(R.layout.fragment_cart) {
+class CartFragment : Fragment() {
 
     private var binding : FragmentCartBinding? = null
 
-    private var cartItems : ArrayList<FoodProduct>? = null
+    private lateinit var cartAdapter: CartAdapter
+
+    private var cartProductList = mutableListOf<CartProduct>()
+
+    private lateinit var firestore: FirebaseFirestore
+    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCartBinding.inflate(layoutInflater)
@@ -24,9 +36,35 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         return binding?.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        extractCartList()
     }
+
+    private fun extractCartList() {
+        firestore = FirebaseFirestore.getInstance()
+        firebaseAuth = FirebaseAuth.getInstance()
+
+        val collectionReference = firestore.collection(USERS_COLLECTION)
+            .document(firebaseAuth.uid!!).collection(CART_COLLECTION)
+
+        collectionReference.addSnapshotListener { value, error ->
+            if (!isAdded) {
+                // Fragment is not attached to a context, do not proceed with UI operations
+                return@addSnapshotListener
+            }
+
+            if (value == null || error != null) {
+                Toast.makeText(requireContext(), "Cannot fetch data", Toast.LENGTH_SHORT).show()
+                return@addSnapshotListener
+            }
+
+            cartProductList.clear()
+            cartProductList.addAll(value.toObjects(CartProduct::class.java))
+            cartAdapter = CartAdapter(requireContext(), cartProductList)
+            binding?.cartRecyclerView?.adapter = cartAdapter
+        }
+    }
+
 
 }

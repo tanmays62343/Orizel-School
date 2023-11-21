@@ -37,10 +37,10 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:ems="10"
-            android:hint="Name"
+            android:hint="Full Name"
             android:textSize="16sp"
             android:layout_marginTop="24dp"
-            android:inputType="textEmailAddress" />
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/et_Semail"

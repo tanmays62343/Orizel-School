@@ -38,6 +38,8 @@
         android:layout_height="match_parent"
         tools:listitem="@layout/cart_recycler_view_item"
         tools:itemCount="6"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
         android:layout_marginVertical="20dp"
         app:layout_constraintBottom_toTopOf="@id/cart_total"
         app:layout_constraintEnd_toEndOf="parent"

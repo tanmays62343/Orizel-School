@@ -10,8 +10,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.orizel.R
+import com.orizel.models.CartProduct
 import com.orizel.models.FoodProduct
+import com.orizel.utils.Constants.CART_COLLECTION
+import com.orizel.utils.Constants.USERS_COLLECTION
 import com.squareup.picasso.Picasso
 
 
@@ -22,6 +27,9 @@ class MainRecyclerAdapter(
     RecyclerView.Adapter<MainRecyclerAdapter.MyViewHolder>() {
 
     private var quantities: Int = 0
+
+    private var firestore = FirebaseFirestore.getInstance()
+    private var firebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view =
@@ -43,12 +51,14 @@ class MainRecyclerAdapter(
             .into(holder.image)
 
         holder.addItem.setOnClickListener {
-            if(quantities<60) {
+            if (quantities < 60) {
                 quantities++
                 holder.quantity.text = quantities.toString()
-            }else{
-                Toast.makeText(context, "Maximum quantity Reached",
-                    Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(
+                    context, "Maximum quantity Reached",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 
@@ -62,10 +72,16 @@ class MainRecyclerAdapter(
         }
 
         holder.addToCart.setOnClickListener {
+
+            val foodProduct = CartProduct(foodProducts[position], quantities)
+            addToCart(foodProduct)
+
+            Toast.makeText(
+                context, "Proceed To cart",
+                Toast.LENGTH_SHORT
+            ).show()
             quantities = 1
             holder.quantity.text = quantities.toString()
-            Toast.makeText(context, "Proceed To cart",
-                Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -79,5 +95,17 @@ class MainRecyclerAdapter(
         val quantity: TextView = itemView.findViewById(R.id.quantity)
         val addToCart: Button = itemView.findViewById(R.id.addToCart)
     }
+
+    //This is cart logic works with the saveUserInfo function in signUp activity
+    private fun addToCart(cartProduct: CartProduct) {
+
+        firestore.collection(USERS_COLLECTION)
+            .document(firebaseAuth.uid!!)
+            .collection(CART_COLLECTION)
+            .document(cartProduct.foodProduct.name)
+            .set(cartProduct)
+
+    }
+
 
 }

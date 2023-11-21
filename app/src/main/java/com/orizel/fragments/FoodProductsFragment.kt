@@ -13,7 +13,7 @@ import com.orizel.adapters.MainRecyclerAdapter
 import com.orizel.databinding.FragmentFoodProductsBinding
 import com.orizel.models.FoodProduct
 
-
+//refer philip lackner for the fragment constructor reference
 class FoodProductsFragment : Fragment(R.layout.fragment_food_products) {
 
     private var binding: FragmentFoodProductsBinding? = null
@@ -52,11 +52,11 @@ class FoodProductsFragment : Fragment(R.layout.fragment_food_products) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setupFireStore()
+        extractProductList()
     }
 
     //Setting up the firebase Database
-    private fun setupFireStore() {
+    private fun extractProductList() {
         firestore = FirebaseFirestore.getInstance()
         val collectionReference = firestore.collection(FOOD_PRODUCTS)
         collectionReference.addSnapshotListener { value, error ->

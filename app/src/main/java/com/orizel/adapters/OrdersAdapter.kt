@@ -33,8 +33,8 @@ class OrdersAdapter(val requiredContext: Context, private val orderItems : Array
     }
 
     class OrderViewAdapter(itemView : View) : RecyclerView.ViewHolder(itemView) {
-        val foodImage : ImageView = itemView.findViewById(R.id.food_image)
-        val foodName : TextView = itemView.findViewById(R.id.food_name)
+        val foodImage : ImageView = itemView.findViewById(R.id.foood_image)
+        val foodName : TextView = itemView.findViewById(R.id.foood_name)
         val status : TextView = itemView.findViewById(R.id.status)
         val datetime : TextView = itemView.findViewById(R.id.date_time)
         val price : TextView = itemView.findViewById(R.id.price)
