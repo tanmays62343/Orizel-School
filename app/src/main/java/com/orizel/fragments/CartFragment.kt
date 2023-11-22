@@ -61,6 +61,12 @@ class CartFragment : Fragment() {
 
             cartProductList.clear()
             cartProductList.addAll(value.toObjects(CartProduct::class.java))
+            var sum = 0
+            for (i in cartProductList) {
+                sum += i.foodProduct.price * i.quantity
+            }
+            binding?.cartTotal?.text = sum.toString()
+
             cartAdapter = CartAdapter(requireContext(), cartProductList)
             binding?.cartRecyclerView?.adapter = cartAdapter
         }
