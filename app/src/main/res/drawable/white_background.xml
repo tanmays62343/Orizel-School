@@ -2,15 +2,15 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item>
-
         <shape android:shape="rectangle">
             <solid android:color="#ffffff"/>
             <corners android:radius="26dp"/>
-
-
+            <stroke
+                android:width="2dp"
+                android:color="#ffe853"/> <!-- Yellow color for the border -->
+            <padding
+                android:bottom="2dp"/> <!-- Adjust the bottom padding to match the border width -->
         </shape>
-
     </item>
-
 
 </selector>
