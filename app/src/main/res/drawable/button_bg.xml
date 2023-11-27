@@ -7,7 +7,7 @@
     <corners android:radius="20dp"/>
 
     <stroke android:width="2dp"
-        android:color="#C39200" />
+        android:color="@color/btn_bg" />
 
 
 </shape>

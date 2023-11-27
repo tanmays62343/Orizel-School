@@ -1,7 +1,7 @@
 package com.orizel.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +11,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.orizel.R
-import com.orizel.activities.CartActivity
 import com.orizel.models.FoodProduct
 import com.squareup.picasso.Picasso
 
@@ -34,19 +33,27 @@ class MainRecyclerAdapter(
         return foodProducts.size
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.itemName.text = foodProducts[position].name
-        holder.itemPrice.text = foodProducts[position].price.toString()
+        holder.itemPrice.text = "₹ " + foodProducts[position].price.toString()
         //Inserting image
-        Picasso.get().load(foodProducts[position].imageUri).into(holder.image)
+        Picasso.get()
+            .load(foodProducts[position].imageUri)
+            .into(holder.image)
 
         holder.addItem.setOnClickListener {
-            quantities++
-            holder.quantity.text = quantities.toString()
+            if(quantities<60) {
+                quantities++
+                holder.quantity.text = quantities.toString()
+            }else{
+                Toast.makeText(context, "Maximum quantity Reached",
+                    Toast.LENGTH_SHORT).show()
+            }
         }
 
         holder.subtractItem.setOnClickListener {
-            if (quantities > 0) {
+            if (quantities > 1) {
                 quantities--
                 holder.quantity.text = quantities.toString()
             } else {
@@ -55,11 +62,10 @@ class MainRecyclerAdapter(
         }
 
         holder.addToCart.setOnClickListener {
-            quantities = 0
+            quantities = 1
             holder.quantity.text = quantities.toString()
-            Toast.makeText(context, "Proceed To cart", Toast.LENGTH_SHORT).show()
-            val intent = Intent(context,CartActivity::class.java)
-            intent.putExtra("QUANTITY",quantities)
+            Toast.makeText(context, "Proceed To cart",
+                Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -71,7 +77,7 @@ class MainRecyclerAdapter(
         val addItem: Button = itemView.findViewById(R.id.add)
         val subtractItem: Button = itemView.findViewById(R.id.subtract)
         val quantity: TextView = itemView.findViewById(R.id.quantity)
-        val addToCart : Button = itemView.findViewById(R.id.addToCart)
+        val addToCart: Button = itemView.findViewById(R.id.addToCart)
     }
 
 }
