@@ -1,5 +1,6 @@
 package com.orizel.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.orizel.activities.MainActivity
 import com.orizel.adapters.CartAdapter
 import com.orizel.databinding.FragmentCartBinding
 import com.orizel.models.CartProduct
@@ -66,6 +68,11 @@ class CartFragment : Fragment() {
                 sum += i.foodProduct.price * i.quantity
             }
             binding?.cartTotal?.text = sum.toString()
+
+            val cartSize = cartProductList.size
+            Intent(requireContext(),MainActivity::class.java).also {
+                it.putExtra("CART_SIZE",cartSize)
+            }
 
             cartAdapter = CartAdapter(requireContext(), cartProductList)
             binding?.cartRecyclerView?.adapter = cartAdapter

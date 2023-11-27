@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.orizel.R
 import com.orizel.databinding.ActivityMainBinding
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private val cartFragment = CartFragment()
     private val ordersFragment = OrdersFragment()
 
+    private var cartSize : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -56,21 +58,15 @@ class MainActivity : AppCompatActivity() {
         binding.btNavigationBar.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.btNavigation_home -> {
-                    setupFragment()
+                    setupFragment(foodProductsFragment)
                    true
                 }
                 R.id.btNavigation_Cart -> {
-                    supportFragmentManager.beginTransaction().apply {
-                        replace(binding.fragmentContainer.id,cartFragment)
-                        commit()
-                    }
+                    setupFragment(cartFragment)
                     true
                 }
                 R.id.btNavigation_orders -> {
-                    supportFragmentManager.beginTransaction().apply {
-                        replace(binding.fragmentContainer.id,ordersFragment)
-                        commit()
-                    }
+                    setupFragment(ordersFragment)
                     true
                 }
                 else -> {
@@ -108,8 +104,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        cartSize = intent.getIntExtra("CART_SIZE",0)
+
         binding.btNavigationBar.getOrCreateBadge(R.id.btNavigation_Cart).apply{
-            number = 10
+            if(cartSize > 0) {
+                number = cartSize
+            }
         }
 
     }
@@ -117,13 +117,13 @@ class MainActivity : AppCompatActivity() {
     //Aggregating all the views here
     private fun setupViews() {
         setupDrawerLayout()
-        setupFragment()
+        setupFragment(foodProductsFragment)
     }
 
-    //setting up the initial fragment
-    private fun setupFragment(){
+    //for setting up the fragments
+    private fun setupFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction().apply {
-            replace(binding.fragmentContainer.id,foodProductsFragment)
+            replace(binding.fragmentContainer.id,fragment)
             commit()
         }
     }

@@ -26,7 +26,7 @@ class MainRecyclerAdapter(
 ) :
     RecyclerView.Adapter<MainRecyclerAdapter.MyViewHolder>() {
 
-    private var quantities: Int = 0
+    private var quantities: Int = 1
 
     private var firestore = FirebaseFirestore.getInstance()
     private var firebaseAuth = FirebaseAuth.getInstance()
